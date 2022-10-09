@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, styleSheets} from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 
 const BookReader = () =>{
 	return(
@@ -11,7 +11,7 @@ const BookReader = () =>{
 
 export default BookReader;
 
-const styles = styleSheets.create({
+const styles = StyleSheet.create({
 	container:{
 		flex:1,
 		alignItem:'center',
