@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Splash from "../screens/splash";
 import MainPage from "../screens/main";
 import BookReader from "../screens/bookReader";
+import CreateBook from "../screens/createBook/createBook";
 
 const Stack = createNativeStackNavigator()
 
@@ -23,6 +24,10 @@ export default function Navigation(props) {
                 <Stack.Screen
                     name="pdfBook"
                     component={BookReader}
+                />
+                <Stack.Screen
+                    name="createBook"
+                    component={CreateBook}
                 />
             </Stack.Navigator>
         </NavigationContainer>

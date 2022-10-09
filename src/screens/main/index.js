@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native
 // import { getAuth } from "firebase/auth";
 import Navigation from "../../navigation";
 //const storage = getStorage();
+const admin = true;
 
 
 
@@ -14,28 +15,33 @@ const MainPage = (props) => {
     const list = [ 'A', 'B', 'c', 'd','e','f', 'g','h','i']
     return(
         <View style= {Styles.container}>
-            <View style= {Styles.list}>
             <FlatList
-                    data = {list}
-                    renderItem={({item})=>{
-                        return(
-                            <TouchableOpacity
-                                onPress={() => {props.navigation.navigate('pdfBook')}}
-                            >
-                                <View style = {Styles.listItem}>
-                                    {/* <Image
-                                        style={styles.noteImg}
-                                        source={NOTE_IMG}
-                                    /> */}
-                                    <Text>  {item}  </Text> 
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    }}
-                    keyExtractor ={(item) => item}
-                />
+                data = {list}
+                renderItem={({item})=>{
+                    return(
+                        <TouchableOpacity
+                            onPress={() => {props.navigation.navigate('pdfBook')}}
+                        >
+                            <View style = {Styles.listItem}>
+                                {/* <Image
+                                    style={styles.noteImg}
+                                    source={NOTE_IMG}
+                                /> */}
+                                <Text>  {item}  </Text> 
+                            </View>
+                        </TouchableOpacity>
+                    )
+                }}
+                keyExtractor ={(item) => item}
+            />
 
+            {admin?
+            <TouchableOpacity onPress={() => props.navigation.navigate('createBook')}>
+            <View>
+                <Text style= {{textAlign:'center'}}> Add Book</Text>
             </View>
+        </TouchableOpacity>:null}
+
         </View>
     )
 }
@@ -43,18 +49,9 @@ const MainPage = (props) => {
 Styles = StyleSheet.create({
     container:{
         flex:1,
-        alignContent:'center',
-        alignItems:'center',
+        justifyContent:'space-between',
          backgroundColor:'lightblue'
         
-    },
-    list:{
-        width:'100%',
-        flexDirection:'row',
-        alignSelf:'center',
-        alignContent:'center',
-        backgroundColor:'transparent',
-        height:'99%'
     },
     listItem:{
         marginTop:20,
