@@ -1,0 +1,2 @@
+export const BOOKS_DATABASE_NAME = 'BOOK_DB'
+export const BOOK_STORAGE_FOLDER = 'BOOKS'
