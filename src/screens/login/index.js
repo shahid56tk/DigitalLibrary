@@ -1,15 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 // import { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 
-const Splash = (props) =>{
-  setTimeout(() => {
-    props.navigation.replace('mainPage')
-  }, 3000);
+const Login = (props) =>{
+  // setTimeout(() => {
+  //   props.navigation.replace('mainPage')
+  // }, 3000);
     return(
         <View style={styles.container}>
         <View style={styles.screen}>
-        <Text>Splash Screen</Text>
+        <Text>Login</Text>
+        <Button
+          title="Login"
+          onPress={()=> props.navigation.navigate('mainPage')}
+        />
         </View>
         {/* <BannerAd unitId={TestIds.BANNER} size ={BannerAdSize.BANNER}/> */}
       </View>
@@ -30,4 +34,4 @@ const Splash = (props) =>{
     }
   });
 
-export default Splash
+export default Login;
