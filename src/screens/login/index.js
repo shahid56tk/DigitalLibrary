@@ -12,7 +12,7 @@ const Login = (props) =>{
         <Text>Login</Text>
         <Button
           title="Login"
-          onPress={()=> props.navigation.navigate('mainPage')}
+          onPress={()=> props.navigation.navigate('createAccount')}
         />
         </View>
         {/* <BannerAd unitId={TestIds.BANNER} size ={BannerAdSize.BANNER}/> */}
