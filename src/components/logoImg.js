@@ -12,8 +12,8 @@ const LogoImg = (props) =>{
 
 const styles= StyleSheet.create({
     img:{
-        width:150,
-        height:150,
+        width:250,
+        height:250,
         // alignSelf:'center'
     }
 })

@@ -11,13 +11,14 @@ const CreateAccount = (props) => {
         <View style = {styles.container}>
             <LogoImg
                 source = { LOGO_IMAGE_SOURCE}
+                style= {styles.logoimg}
             />
             <View style= {styles.txtInputContainer}>
                 <TextInput
                     style = {styles. txtInput}
                     placeholder={"Please Enter Email"}
                     value={email}
-                    onChangeText = {(t) => setEmail(t.toLowerCase)}
+                    onChangeText = {(t) => setEmail(t.toLowerCase())}
                 />
                 <TextInput
                     style= {styles.txtInput}
@@ -43,14 +44,19 @@ styles = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'center',
+        backgroundColor:'#ffffff'
 
     },
+    logoimg:{
+        backgroundColor:'#ffffff'
+    },
     txtInputContainer:{
-        width:'98%',
+        width:'95%',
         marginTop:20,
-        backgroundColor:"green",
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        paddingBottom:30,
+        paddingTop:20,
     },
     txtInput:{
         width:'95%',
@@ -58,10 +64,13 @@ styles = StyleSheet.create({
         borderWidth:1,
         textAlign:'center',
         marginTop:10,
-        alignSelf:'center'
+        alignSelf:'center',
+        borderRadius:20,
+        marginBottom:20
 
     },
     btn:{
+        width:'50%'
 
     }
 });
