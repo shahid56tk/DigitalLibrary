@@ -10,7 +10,7 @@ const admin = true;
 
 
 
-const MainPage = (props) => {
+const BookList = (props) => {
 
     const list = [ 'A', 'B', 'c', 'd','e','f', 'g','h','i']
     return(
@@ -64,4 +64,4 @@ Styles = StyleSheet.create({
         alignSelf:'center'
     }
 })
-export default MainPage
+export default BookList;

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, TextInput, StyleSheet, Button, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, StyleSheet, Button, Text, TouchableOpacity, Image } from "react-native";
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE, } from "../../../res/strings/string";
 // import { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
@@ -8,27 +8,27 @@ const Login = (props) =>{
   const [email, setEmail] = useState(null)
     const [ passowrd, setPassword] = useState(null)
     return(
-        <View style = {styles.container}>
+        <View style = {Styles.container}>
             <LogoImg
                 source = { LOGO_IMAGE_SOURCE}
-                style= {styles.logoimg}
+                style= {Styles.logoimg}
             />
-            <View style= {styles.txtInputContainer}>
+            <View style= {Styles.txtInputContainer}>
                 <TextInput
-                    style = {styles. txtInput}
+                    style = {Styles. txtInput}
                     placeholder={"Please Enter Email"}
                     value={email}
                     onChangeText = {(t) => setEmail(t.toLowerCase())}
                 />
                 <TextInput
-                    style= {styles.txtInput}
+                    style= {Styles.txtInput}
                     placeholder = {'Pleas enter Password'}
                     value= {passowrd}
                     secureTextEntry = {true}
                     onChangeText = {(t)=> setPassword(t)}
                 />
             </View>
-            <View style = {styles.btn}>
+            <View style = {Styles.btn}>
                 <Button
                     title={'Log In'}
                     onPress = {()=> props.navigation.navigate('mainPage')}
@@ -38,39 +38,38 @@ const Login = (props) =>{
               onPress={()=> props.navigation.navigate('createAccount')}
             >
               <Text
-                style= {styles.touchableTxt}
+                style= {Styles.touchableTxt}
               > Create Account</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               onPress={()=> alert('forgot Password')}
             >
               <Text
-                style = {styles.touchableTxt}
+                style = {Styles.touchableTxt}
               > Forgot Password </Text>
             </TouchableOpacity>
 
         </View>
     );
-};
+}
 
-styles = StyleSheet.create({
+Styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'#ffffff'
-
     },
     logoimg:{
-      backgroundColor:'#ffffff'
+        backgroundColor:'#ffffff',
+        width:250,
+        height:250,
     },
-    txtInputContainer:{
+  txtInputContainer:{
         width:'95%',
-        marginTop:20,
+        marginTop:5,
         alignItems:'center',
         justifyContent:'center',
-        paddingBottom:30,
-        paddingTop:20,
     },
     txtInput:{
         width:'95%',

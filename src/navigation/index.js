@@ -1,9 +1,9 @@
 import * as React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from "../screens/login";
+import Login from "../screens/loginPage/login";
+import BookList from "../screens/bookList";
 import CreateAccount from "../screens/createAccount";
-import MainPage from "../screens/mainPage";
 import BookReader from "../screens/bookReader";
 import CreateBook from "../screens/createBook/createBook";
 import Splash from "../screens/splash";
@@ -30,7 +30,7 @@ export default function Navigation(props) {
                 />
                 <Stack.Screen
                     name="mainPage"
-                    component={MainPage}
+                    component={BookList}
                 />
                 <Stack.Screen
                     name="pdfBook"
