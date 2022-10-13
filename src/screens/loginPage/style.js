@@ -7,16 +7,29 @@ export const Styles = StyleSheet.create({
         justifyContent:'center',
         backgroundColor:'#ffffff'
     },
+    act:{
+        position:'relative',
+        width:'100%',
+        height:'100%',
+        alignSelf:'center',
+        backgroundColor:'transparent'
+    },
     logoimg:{
         backgroundColor:'#ffffff',
         width:250,
         height:250,
+    },
+    logo:{
+        backgroundColor:'#ffffff',
+        width:150,
+        height:150,
     },
   txtInputContainer:{
         width:'95%',
         marginTop:5,
         alignItems:'center',
         justifyContent:'center',
+        elevation:10
     },
     txtInput:{
         width:'95%',

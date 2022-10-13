@@ -26,7 +26,7 @@ export default function Navigation(props) {
                 <Stack.Screen
                     name="createAccount"
                     component={CreateAccount}
-                    options={{headerShown:true}}
+                    options={{headerShown:false}}
                 />
                 <Stack.Screen
                     name="mainPage"

@@ -2,13 +2,45 @@ import React, {useState} from "react";
 import { View, TextInput, Button, Text, TouchableOpacity, Image } from "react-native";
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE, } from "../../../res/strings/string";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import app from "../../../api/firebase";
 // import { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
 import { Styles } from "./style";
 
 
+
 const Login = (props) =>{
   const [email, setEmail] = useState(null)
-    const [ passowrd, setPassword] = useState(null)
+  const [ password, setPassword] = useState(null)
+  
+  const onForgetPressed = () =>{
+    const auth = getAuth();
+    if(email){
+      sendPasswordResetEmail(auth, email)
+      .then((user) => {
+          alert('password reset email sent!')
+      })
+      .catch((e) => {
+          alert(e.message)
+      })
+    }
+    else{alert('Please enter a valid Email Address')}
+}
+
+
+  const onSigninPressed = async () =>{
+    const auth = getAuth(app)
+    if(email && email.includes('@') && password){
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          //alert(`You are Signed In as ${email}`)
+          setPassword(null)
+          setEmail(null)
+          props.navigation.navigate('mainPage')
+          //console.log(userCredential)   // user information object
+      });
+      }else { alert('Please Enter Valid Email and Password')}
+    }
     return(
         <View style = {Styles.container}>
             <LogoImg
@@ -25,7 +57,7 @@ const Login = (props) =>{
                 <TextInput
                     style= {Styles.txtInput}
                     placeholder = {'Pleas enter Password'}
-                    value= {passowrd}
+                    value= {password}
                     secureTextEntry = {true}
                     onChangeText = {(t)=> setPassword(t)}
                 />
@@ -33,7 +65,7 @@ const Login = (props) =>{
             <View style = {Styles.btn}>
                 <Button
                     title={'Log In'}
-                    onPress = {()=> props.navigation.navigate('mainPage')}
+                    onPress = {()=> onSigninPressed()}
                 />
             </View>
             <TouchableOpacity 
@@ -44,7 +76,7 @@ const Login = (props) =>{
               > Create Account</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              onPress={()=> alert('forgot Password')}
+              onPress={()=> onForgetPressed()}
             >
               <Text
                 style = {Styles.touchableTxt}
