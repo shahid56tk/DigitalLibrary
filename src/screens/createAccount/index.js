@@ -1,13 +1,34 @@
 import React, { useState } from "react";
-import { View, TextInput, Button } from "react-native";
+import { View, TextInput, Button, TouchableOpacity, Text } from "react-native";
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE } from "../../../res/strings/string";
-import Styles from "../loginPage/style";
+import app from "../../../api/firebase";
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import { async } from "@firebase/util";
+
+import {Styles} from "../loginPage/style";
+
 
 const CreateAccount = (props) => {
 
     const [email, setEmail] = useState(null)
     const [ passowrd, setPassword] = useState(null)
+
+    const onSignUpPressed = async () => {
+        const auth = getAuth(app)
+        if(email && passowrd){
+           try{
+                if(email.includes('@')){
+                    let res = await createUserWithEmailAndPassword(auth,email,passowrd)
+                    console.log('Account Created Successfully')
+                    props.navigation.navigate('login')
+                } else{alert('Please Enter a Valid Email Address')}
+
+           }
+           catch(e) {alert(e.message)}
+        }
+        else{ alert("Email and Password rquired")}
+    }
     return(
         <View style = {Styles.container}>
             <LogoImg
@@ -32,9 +53,16 @@ const CreateAccount = (props) => {
             <View style = {Styles.btn}>
                 <Button
                     title={'Sign Up'}
-                    onPress = {()=> alert('SignUp')}
+                    onPress = {()=> onSignUpPressed()}
                 />
             </View>
+            <TouchableOpacity 
+              onPress={()=> props.navigation.navigate('login')}
+            >
+              <Text
+                style= {Styles.touchableTxt}
+              > Already Have an Account</Text>
+            </TouchableOpacity>
 
         </View>
     );

@@ -3,7 +3,8 @@ import { View, TextInput, Button, Text, TouchableOpacity, Image } from "react-na
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE, } from "../../../res/strings/string";
 // import { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads';
-import Styles from "./style";
+import { Styles } from "./style";
+
 
 const Login = (props) =>{
   const [email, setEmail] = useState(null)
