@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import { View, TextInput, Button, TouchableOpacity, Text, ActivityIndicator, ScrollView } from "react-native";
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE, USER_DATABASE } from "../../../res/strings/string";
 import app from "../../../api/firebase";
@@ -52,61 +52,65 @@ const CreateAccount = (props) => {
         setLoading(false)
     }
     return(
-        <View style = {Styles.container}>
-            {loading? 
-                <ActivityIndicator
-                    size={'large'}
-                    style={Styles.act}
-                />:null
-            }
-            <LogoImg
-                source = { LOGO_IMAGE_SOURCE}
-                style= {Styles.logo}
-            />
+        <ScrollView style = {{marginTop:30}}
+            endFillColor='#ffffff'
+        >
+            <View style = {Styles.container}>
+                {loading? 
+                    <ActivityIndicator
+                        size={'large'}
+                        style={Styles.act}
+                    />:null
+                }
+                <LogoImg
+                    source = { LOGO_IMAGE_SOURCE}
+                    style= {Styles.logoimg}
+                />
 
-            <View style= {Styles.txtInputContainer}>
-                <TextInput
-                    style = {Styles. txtInput}
-                    placeholder={"Email"}
-                    value={email}
-                    onChangeText = {(t) => setEmail(t.toLowerCase())}
-                />
-                <TextInput
-                    style = {Styles. txtInput}
-                    placeholder={"Full Name "}
-                    value={name}
-                    onChangeText = {(t) => setName(t)}
-                />
-                <TextInput
-                    style= {Styles.txtInput}
-                    placeholder = {'Password'}
-                    value= {passowrd}
-                    secureTextEntry = {true}
-                    onChangeText = {(t)=> setPassword(t)}
-                />
-                <TextInput
-                    style= {Styles.txtInput}
-                    placeholder = {'Confirm Password'}
-                    value= {confirmPassword}
-                    secureTextEntry = {true}
-                    onChangeText = {(t)=> setConfirmPassword(t)}
-                />
-            </View>
-            <View style = {Styles.btn}>
-                <Button
-                    title={'Sign Up'}
-                    onPress = {()=> onSignUpPressed()}
-                />
-            </View>
-            <TouchableOpacity 
-              onPress={()=> props.navigation.navigate('login')}
-            >
-              <Text
-                style= {Styles.touchableTxt}
-              > Already Have an Account</Text>
-            </TouchableOpacity>
+                <View style= {Styles.txtInputContainer}>
+                    <TextInput
+                        style = {Styles. txtInput}
+                        placeholder={"Email"}
+                        value={email}
+                        onChangeText = {(t) => setEmail(t.toLowerCase())}
+                    />
+                    <TextInput
+                        style = {Styles. txtInput}
+                        placeholder={"Full Name "}
+                        value={name}
+                        onChangeText = {(t) => setName(t)}
+                    />
+                    <TextInput
+                        style= {Styles.txtInput}
+                        placeholder = {'Password'}
+                        value= {passowrd}
+                        secureTextEntry = {true}
+                        onChangeText = {(t)=> setPassword(t)}
+                    />
+                    <TextInput
+                        style= {Styles.txtInput}
+                        placeholder = {'Confirm Password'}
+                        value= {confirmPassword}
+                        secureTextEntry = {true}
+                        onChangeText = {(t)=> setConfirmPassword(t)}
+                    />
+                </View>
+                <View style = {Styles.btn}>
+                    <Button
+                        title={'Sign Up'}
+                        onPress = {()=> onSignUpPressed()}
+                    />
+                </View>
+                <TouchableOpacity 
+                onPress={()=> props.navigation.navigate('login')}
+                >
+                <Text
+                    style= {Styles.touchableTxt}
+                > Already Have an Account</Text>
+                </TouchableOpacity>
 
-        </View>
+            </View>
+        </ScrollView>
     );
 };
 

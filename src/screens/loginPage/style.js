@@ -1,11 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const Styles = StyleSheet.create({
+    scrollContainer:{
+    },
     container:{
         flex:1,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#ffffff'
+        backgroundColor:'#ffffff',
     },
     act:{
         position:'relative',
@@ -46,8 +48,8 @@ export const Styles = StyleSheet.create({
         width:'40%'
     },
     touchableTxt:{
-      marginTop:10,
+      marginTop:30,
       color:'blue',
-      fontSize:17
+      fontSize:17,
     }
 });

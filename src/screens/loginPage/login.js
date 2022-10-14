@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, TextInput, Button, Text, TouchableOpacity, Image } from "react-native";
+import { View, TextInput, Button, Text, TouchableOpacity, ScrollView } from "react-native";
 import LogoImg from "../../components/logoImg";
 import { LOGO_IMAGE_SOURCE, } from "../../../res/strings/string";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
@@ -19,6 +19,7 @@ const Login = (props) =>{
       sendPasswordResetEmail(auth, email)
       .then((user) => {
           alert('password reset email sent!')
+          console.log(user)
       })
       .catch((e) => {
           alert(e.message)
@@ -42,48 +43,52 @@ const Login = (props) =>{
       }else { alert('Please Enter Valid Email and Password')}
     }
     return(
-        <View style = {Styles.container}>
-            <LogoImg
-                source = { LOGO_IMAGE_SOURCE}
-                style= {Styles.logoimg}
-            />
-            <View style= {Styles.txtInputContainer}>
-                <TextInput
-                    style = {Styles. txtInput}
-                    placeholder={"Please Enter Email"}
-                    value={email}
-                    onChangeText = {(t) => setEmail(t.toLowerCase())}
-                />
-                <TextInput
-                    style= {Styles.txtInput}
-                    placeholder = {'Pleas enter Password'}
-                    value= {password}
-                    secureTextEntry = {true}
-                    onChangeText = {(t)=> setPassword(t)}
-                />
-            </View>
-            <View style = {Styles.btn}>
-                <Button
-                    title={'Log In'}
-                    onPress = {()=> onSigninPressed()}
-                />
-            </View>
-            <TouchableOpacity 
-              onPress={()=> props.navigation.navigate('createAccount')}
-            >
-              <Text
-                style= {Styles.touchableTxt}
-              > Create Account</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              onPress={()=> onForgetPressed()}
-            >
-              <Text
-                style = {Styles.touchableTxt}
-              > Forgot Password </Text>
-            </TouchableOpacity>
+        <ScrollView 
+          style = {Styles.scrollContainer}
+          endFillColor='#ffffff'>
+          <View style = {Styles.container}>
+              <LogoImg
+                  source = { LOGO_IMAGE_SOURCE}
+                  style= {Styles.logoimg}
+              />
+              <View style= {Styles.txtInputContainer}>
+                  <TextInput
+                      style = {Styles. txtInput}
+                      placeholder={"Please Enter Email"}
+                      value={email}
+                      onChangeText = {(t) => setEmail(t.toLowerCase())}
+                  />
+                  <TextInput
+                      style= {Styles.txtInput}
+                      placeholder = {'Pleas enter Password'}
+                      value= {password}
+                      secureTextEntry = {true}
+                      onChangeText = {(t)=> setPassword(t)}
+                  />
+              </View>
+              <View style = {Styles.btn}>
+                  <Button
+                      title={'Log In'}
+                      onPress = {()=> onSigninPressed()}
+                  />
+              </View>
+              <TouchableOpacity 
+                onPress={()=> props.navigation.navigate('createAccount')}
+              >
+                <Text
+                  style= {Styles.touchableTxt}
+                > Create Account</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                onPress={()=> onForgetPressed()}
+              >
+                <Text
+                  style = {Styles.touchableTxt}
+                > Forgot Password </Text>
+              </TouchableOpacity>
 
-        </View>
+          </View>
+        </ScrollView>
     );
 }
 
