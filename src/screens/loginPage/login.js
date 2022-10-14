@@ -28,7 +28,7 @@ const Login = (props) =>{
 }
 
 
-  const onSigninPressed = async () =>{
+  const onSigninPressed =() =>{
     const auth = getAuth(app)
     if(email && email.includes('@') && password){
       signInWithEmailAndPassword(auth, email, password)
@@ -37,7 +37,7 @@ const Login = (props) =>{
           setPassword(null)
           setEmail(null)
           props.navigation.navigate('mainPage')
-          //console.log(userCredential)   // user information object
+          console.log(userCredential)   // user information object
       });
       }else { alert('Please Enter Valid Email and Password')}
     }
