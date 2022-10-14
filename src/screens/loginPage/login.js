@@ -38,7 +38,7 @@ const Login = (props) =>{
           setEmail(null)
           props.navigation.navigate('mainPage')
           console.log(userCredential)   // user information object
-      });
+      }).catch((e)=> {alert(e.message)})
       }else { alert('Please Enter Valid Email and Password')}
     }
     return(
