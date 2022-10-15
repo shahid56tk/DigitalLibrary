@@ -79,7 +79,7 @@ const CreateBook = (props) =>{
     );
 };
 
-styles = new StyleSheet.create({
+const styles = new StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
