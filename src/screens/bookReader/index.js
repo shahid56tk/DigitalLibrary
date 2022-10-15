@@ -20,8 +20,9 @@ const BookReader = () =>{
 				// withScroll={true}
 				webviewStyle = {{width:'95%', alignSelf:'center',marginBottom:20}}
 				// useGoogleReader= {true}
-				// maximumPinchZoomScale={1}
+				maximumPinchZoomScale={200}
 				// withScroll={true}
+				withPinchZoom= {true}
 				
 				
 
