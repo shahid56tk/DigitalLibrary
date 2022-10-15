@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, FlatList, } from "react-native";
-import { Styles } from "../loginPage/style";
 let keys = ['a', 'b', 'c', 'd','e']
 
 const CategoryList = (props) =>{
