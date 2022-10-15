@@ -45,7 +45,8 @@ const Login = (props) =>{
     return(
         <ScrollView 
           style = {Styles.scrollContainer}
-          endFillColor='#ffffff'>
+          endFillColor='#ffffff'
+          fadingEdgeLength={2}>
           <View style = {Styles.container}>
               <LogoImg
                   source = { LOGO_IMAGE_SOURCE}
