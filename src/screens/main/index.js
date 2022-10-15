@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, FlatList, } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, } from "react-native";
 let keys = ['a', 'b', 'c', 'd','e']
+let admin = true
 
 const CategoryList = (props) =>{
     return(
@@ -10,14 +11,23 @@ const CategoryList = (props) =>{
                 data={keys}
                 renderItem= {({item})=>{
                     return(
-                        <View style = {Styles.listItem}>
-                            <Text style = {Styles.itemTxt}> {keys} </Text>
-                        </View>
+                        <TouchableOpacity
+                            onPress={()=> props.navigation.navigate('bookList')}
+                        >
+                            <View style = {Styles.listItem}>
+                                <Text style = {Styles.itemTxt}> {item} </Text>
+                            </View>
+                            </TouchableOpacity>
                     )
                 }}
-            >
-
-            </FlatList>
+                keyExtractor = {(item) => item}
+            />
+             {admin?
+            <TouchableOpacity onPress={() => props.navigation.navigate('addCategory')}>
+            <View>
+                <Text style= {{textAlign:'center'}}> Add New Category</Text>
+            </View>
+        </TouchableOpacity>:null}
 
         </View>
     )
@@ -36,18 +46,19 @@ const Styles = StyleSheet.create({
         width:'100%',
         height:25,
         borderBottomWidth:1,
+        marginBottom:10,
     },
     listItem:{
-        width:'85%',
+        minWidth:'97%',
         alignSelf:'center',
-        height:40,
+        height:60,
+        marginBottom:15,
         backgroundColor:'green',
-        elevation:5,
     },
     itemTxt:{
         textAlign:'center',
         fontSize:18,
     }
 
-
-})
+});
+export default CategoryList;

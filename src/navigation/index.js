@@ -7,6 +7,8 @@ import CreateAccount from "../screens/createAccount";
 import BookReader from "../screens/bookReader";
 import CreateBook from "../screens/createBook/createBook";
 import Splash from "../screens/splash";
+import CategoryList from "../screens/main";
+import AddCategory from "../screens/addCategory";
 
 const Stack = createNativeStackNavigator()
 
@@ -29,7 +31,15 @@ export default function Navigation(props) {
                     options={{headerShown:false}}
                 />
                 <Stack.Screen
-                    name="mainPage"
+                    name="bookCategory"
+                    component={CategoryList}
+                />
+                <Stack.Screen
+                    name="addCategory"
+                    component={AddCategory}
+                />
+                <Stack.Screen
+                    name="bookList"
                     component={BookList}
                 />
                 <Stack.Screen

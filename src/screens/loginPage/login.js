@@ -37,7 +37,7 @@ const Login = (props) =>{
           //alert(`You are Signed In as ${email}`)
           setPassword(null)
           setEmail(null)
-          props.navigation.navigate('mainPage')
+          props.navigation.navigate('bookCategory')
           console.log(userCredential)   // user information object
       }).catch((e)=> {alert(e.message)})
       }else { alert('Please Enter Valid Email and Password')}
