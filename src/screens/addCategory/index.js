@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import { View,TextInput, Button, Text, StyleSheet } from "react-native";
+import { AddBookCategory } from "../../services/firebase";
 
 const AddCategory = (props) => {
     const [categoryName, setCategoryName] = useState(null)
     const [categoryDisp, setCategoryDiscp] = useState(null)
+
+    const onPressAddCategory = async () =>{
+        if(categoryName && categoryDisp){
+            let payload = { categoryName, categoryDisp}
+            let res = await AddBookCategory(payload)
+            alert('Book Category Added Successfully')
+            props.navigation.goBack()
+        }
+        else{ alert('All fields are rquired')}
+       
+
+    }
     return(
         <View style = {Styles.container}>
             <TextInput 
@@ -19,7 +32,7 @@ const AddCategory = (props) => {
             />
             <Button
                 title="Add Category"
-                onPress={() => alert('category')}
+                onPress={() => onPressAddCategory()}
             />
         </View>
     )

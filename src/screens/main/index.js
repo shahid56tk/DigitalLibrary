@@ -1,27 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, } from "react-native";
-let keys = ['a', 'b', 'c', 'd','e']
+import { getBookCategory } from "../../services/firebase";
+let keys = [{firstName:"John", lastName:"Doe", age:46}, {firstName:"bad", lastName:"Docce", age:46}]
 let admin = true
 
 const CategoryList = (props) =>{
+    const [categories, setCategories] = useState(null)
+    let keys1 = []
+    const getCat = () =>{
+        keys1 =getBookCategory()
+        setCategories(keys1)
+        console.log(categories)
+    }
+    useEffect(()=>{
+        getCat()
+
+    },[])
     return(
         <View style= {Styles.container}>
             <Text style = {Styles.mainText}>Please select catergory of you interest </Text>
+            {categories?
             <FlatList
-                data={keys}
+                data={categories}
                 renderItem= {({item})=>{
                     return(
                         <TouchableOpacity
                             onPress={()=> props.navigation.navigate('bookList')}
                         >
                             <View style = {Styles.listItem}>
-                                <Text style = {Styles.itemTxt}> {item} </Text>
+                                <Text style = {Styles.itemTxt}> {item.categoryName} </Text>
                             </View>
                             </TouchableOpacity>
                     )
                 }}
                 keyExtractor = {(item) => item}
-            />
+            />:null}
              {admin?
             <TouchableOpacity onPress={() => props.navigation.navigate('addCategory')}>
             <View>
