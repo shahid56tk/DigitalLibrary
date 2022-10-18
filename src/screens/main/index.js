@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, } from "react-native";
-import { getBookCategory } from "../../services/firebase";
-let keys = [{firstName:"John", lastName:"Doe", age:46}, {firstName:"bad", lastName:"Docce", age:46}]
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, } from "react-native";
+import {collection, query, onSnapshot, getFirestore, doc} from 'firebase/firestore'
+import app from '../../../api/firebase'
+import { BOOK_CATEGORY_DATABASE } from "../../../res/strings/string";
+const db = getFirestore(app)
+// let keys = [{firstName:"John", lastName:"Doe", age:46}, {firstName:"bad", lastName:"Docce", age:46}]
 let admin = true
 
 const CategoryList = (props) =>{
     const [categories, setCategories] = useState(null)
-    let keys1 = []
-    const getCat = () =>{
-        keys1 =getBookCategory()
-        setCategories(keys1)
-        console.log(categories)
+
+    const getBookCategory = async () =>{
+        const qry = query(collection(db, BOOK_CATEGORY_DATABASE))
+        try{
+            onSnapshot(qry,(querySnapshot)=>{
+                let keys = []
+                querySnapshot.forEach((doc) =>{
+                    keys.push(doc.data())
+                })
+            setCategories(keys)
+            console.log(categories)
+            })
+        }catch(e){console.log(e.message)}
     }
+
     useEffect(()=>{
-        getCat()
+        getBookCategory()
 
     },[])
     return(
         <View style= {Styles.container}>
             <Text style = {Styles.mainText}>Please select catergory of you interest </Text>
-            {categories?
             <FlatList
                 data={categories}
                 renderItem= {({item})=>{
@@ -34,7 +45,7 @@ const CategoryList = (props) =>{
                     )
                 }}
                 keyExtractor = {(item) => item}
-            />:null}
+            />
              {admin?
             <TouchableOpacity onPress={() => props.navigation.navigate('addCategory')}>
             <View>
@@ -64,7 +75,7 @@ const Styles = StyleSheet.create({
     listItem:{
         minWidth:'97%',
         alignSelf:'center',
-        height:60,
+        height:75,
         marginBottom:15,
         backgroundColor:'green',
     },
